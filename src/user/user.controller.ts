@@ -12,6 +12,7 @@ export class UserController {
 
   @Post()
   async createUser(@Body() createuser: CreateUserDto) {
+    /* Retorna todos os dados que o usuário enviou e no campo password retorna a string (independente do que o usuário tenha digitado) */
     return {
       ...createuser,
       password: 'Senha criptografada 🔐',
