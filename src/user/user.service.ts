@@ -1,14 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { hash } from 'bcrypt';
 import { CreateUserDto } from './dtos/createUser.dto';
-import { User } from './interfaces/user.interface';
+// import { User } from './interfaces/user.interface';
+import { UserEntity } from './interfaces/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  private users: User[] = [];
+  /* Array de usuários para salvar informações hardcoded */
+  // private users: User[] = [];
 
-  /* Agora no retorno o usuário tem os dados que ele enviou e também o id: 1 */
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+  ) {}
+
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     /* Criptografando a senha do usuário */
     const saltOrRounds = 10;
 
@@ -16,24 +24,31 @@ export class UserService {
 
     // console.log('passwrodHashed: ', passwrodHashed);
 
-    const user: User = {
+    // const user: UserEntity = {
+    //   ...createUserDto,
+    //   id: this.users.length + 1,
+    //   password: passwrodHashed,
+    // };
+
+    // this.users.push(user);
+
+    return this.userRepository.save({
       ...createUserDto,
-      id: this.users.length + 1,
       password: passwrodHashed,
-    };
+    });
 
-    this.users.push(user);
-
+    /* Agora no retorno o usuário tem os dados que ele enviou e também o id: 1 */
     // return {
     //   ...createUserDto,
     //   id: 1,
     // };
 
-    return user;
+    // return user;
   }
 
   /* Retornando todos os usuários cadastrados */
-  async getAllUsers(): Promise<User[]> {
-    return this.users;
+  async getAllUsers(): Promise<UserEntity[]> {
+    // return this.users;
+    return this.userRepository.find();
   }
 }
