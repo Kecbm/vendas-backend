@@ -9,8 +9,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       envFilePath: ['.env.development.local'],
     }),
 
-    /* ESTOU EM: seção 3 - aula 18 - 9:55 min */
-
     TypeOrmModule.forRoot({
       type: 'postgres',
       database: process.env.DB_DATABASE,
@@ -18,8 +16,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.DB_PASSWORD,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
+      synchronize: true,
+      entities: [`${__dirname}/**/*.entity{.js,.ts}`],
     }),
+
     UserModule,
   ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
