@@ -17,6 +17,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+// OBS.: apagar a tabela user do BD antes de iniciar a aplicação (ao iniciar ela cria a nova tabela)
+
 @Entity({ name: 'user' })
 export class UserEntity {
   @PrimaryGeneratedColumn('rowid')
