@@ -18,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DB_USERNAME,
       // synchronize: true,
       entities: [`${__dirname}/**/*.entity{.js,.ts}`],
-      migrations: [`${__dirname}/migration/{.ts,.js}`],
+      migrations: [`${__dirname}/migration/{.ts,*.js}`],
       migrationsRun: true,
     }),
 

@@ -34,6 +34,7 @@ export class UserService {
 
     return this.userRepository.save({
       ...createUserDto,
+      typeUser: 1,
       password: passwrodHashed,
     });
 

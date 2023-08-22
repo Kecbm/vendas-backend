@@ -1,63 +1,28 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateTableUser1692320806609 implements MigrationInterface {
   /* Aqui cria uma tabela no BD */
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        name: 'user',
-        columns: [
-          {
-            name: 'id',
-            type: 'serial4',
-            isPrimary: true,
-            isGenerated: true,
-            generationStrategy: 'increment',
-          },
-          {
-            name: 'name',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'email',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'phone',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'cpf',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'password',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
-        ],
-      }),
+    await queryRunner.query(
+      `CREATE TABLE "user" (
+        "id" integer NOT NULL,
+        "name" character varying NOT NULL,
+        "email" character varying NOT NULL,
+        "cpf" character varying NOT NULL,
+        "type_user" integer NOT NULL,
+        "phone" character varying NOT NULL,
+        "password" character varying NOT NULL,
+        "created_at" timestamp NOT NULL,
+        "updated_at" timestamp NOT NULL,
+        CONSTRAINT "PK_58a149c4e88bf49036bc4c8c79f" PRIMARY KEY ("id")
+      )`,
     );
   }
 
   /* E aqui deleta a tabela do BD */
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user');
+    await queryRunner.query(`DROP TABLE "user"`);
   }
 
-  // ESTOU EM: Seção 3 - Aula 20 - 2:50 min
+  /* ESTOU EM: Seção 3 - Aula 20 - 5:38 min */
 }

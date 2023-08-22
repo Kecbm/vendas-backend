@@ -9,9 +9,15 @@
 //   password: string;
 // }
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@Entity({ name: 'user' })
+@Entity({ name: 'user', schema: 'vendas-online' })
 export class UserEntity {
   @PrimaryGeneratedColumn('rowid')
   id: number;
@@ -30,4 +36,21 @@ export class UserEntity {
 
   @Column({ name: 'password', nullable: false })
   password: string;
+
+  @Column({ name: 'type_user', nullable: false })
+  typeUser: number;
+
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamptz',
+    default: () => 'NOW()',
+  })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    name: 'updated_at',
+    type: 'timestamptz',
+    default: () => 'NOW()',
+  })
+  updatedAt: Date;
 }
