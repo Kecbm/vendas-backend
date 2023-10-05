@@ -43,6 +43,7 @@ export class UserEntity {
   typeUser: number;
 
   // ESTOU EM: não tá inserindo valores de data em created_at e updated_at, tá indo null :(
+  // Ver em algum projeto Neste da Br esse ponto de inserir data automaticamente
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamptz',
