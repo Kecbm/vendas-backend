@@ -13,8 +13,8 @@ export class CreateTableUser1692320806609 implements MigrationInterface {
         "type_user" integer NOT NULL,
         "phone" character varying NOT NULL,
         "password" character varying NOT NULL,
-        "created_at" timestamp,
-        "updated_at" timestamp,
+        "created_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "updated_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         primary key ("id")
       );
       `,

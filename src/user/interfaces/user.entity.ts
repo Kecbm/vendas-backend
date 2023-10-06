@@ -42,19 +42,13 @@ export class UserEntity {
   @Column({ name: 'type_user', nullable: false })
   typeUser: number;
 
-  // ESTOU EM: não tá inserindo valores de data em created_at e updated_at, tá indo null :(
-  // Ver em algum projeto Neste da Br esse ponto de inserir data automaticamente
-  @CreateDateColumn({
-    name: 'created_at',
-    type: 'timestamptz',
-    default: () => 'NOW()',
-  })
-  createdAt: Date;
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date;
 
   @UpdateDateColumn({
-    name: 'updated_at',
-    type: 'timestamptz',
-    default: () => 'NOW()',
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
   })
-  updatedAt: Date;
+  updated_at: Date;
 }
