@@ -1,7 +1,17 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class AlterTableState1696896986187 implements MigrationInterface {
-  public async up(queryRunner: QueryRunner): Promise<void> {}
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    queryRunner.query(`
+        ALTER TABLE "state"
+            ADD "uf" varchar(2) NOT NULL;
+    `);
+  }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {}
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    queryRunner.query(`
+        ALTER TABLE "state"
+            DROP COLUMN "uf";
+    `);
+  }
 }
