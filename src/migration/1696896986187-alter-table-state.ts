@@ -11,7 +11,7 @@ export class AlterTableState1696896986187 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
         ALTER TABLE "state"
-            DROP COLUMN "uf";
+          DROP COLUMN "uf";
     `);
   }
 }

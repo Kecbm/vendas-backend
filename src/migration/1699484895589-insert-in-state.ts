@@ -35,7 +35,7 @@ export class InsertInState1699484895589 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
-        Delete FROM "state";
+        DELETE FROM "state";
     `);
   }
 }
